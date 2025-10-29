@@ -1,0 +1,48 @@
+.hero-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 80px;
+  background-color: #f0f8ff;
+  color: #2e8b57;
+  flex-wrap: wrap;
+}
+
+.hero-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  color: #1e90ff;
+  margin-bottom: 10px;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: #2e8b57;
+  margin-bottom: 20px;
+}
+
+.description {
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.impact-list {
+  list-style-type: none;
+  padding-left: 0;
+  line-height: 1.6;
+}
+
+.impact-list li {
+  margin-bottom: 8px;
+}
+
+.hero-image img {
+  max-width: 450px;
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
