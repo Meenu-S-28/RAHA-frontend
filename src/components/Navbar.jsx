@@ -17,7 +17,6 @@ const Navbar = () => {
       <div className="flex gap-6 text-rahaBlue font-semibold">
         <Link to="/">Home</Link>
         <Link to="/facility-finder">Nearest Facility Finder</Link>
-        <Link to="/doctors">Doctors Nearby</Link>
         <Link to="/login">Login</Link>
         <Link to="/signup">Sign Up</Link>
       </div>
