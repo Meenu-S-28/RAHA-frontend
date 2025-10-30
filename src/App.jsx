@@ -1,16 +1,39 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Stats from "./components/Stats";
 import Footer from "./components/Footer";
+import Carousel from "./components/Carousel";
+import FacilityFinder from "./pages/NearestFacilityFinder";
+import SpecialitiesNearby from "./pages/HospitalsNearby";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 const App = () => {
   return (
-    <>
+    <Router>
       <Navbar />
-      <Hero />
-      <Stats />
-      <Footer />
-    </>
+      <Routes>
+        {/* Home Page */}
+        <Route
+          path="/"
+          element={
+            <>
+              <Hero />
+              <Stats />
+              <Carousel />
+              <Footer />
+            </>
+          }
+        />
+
+        {/* Other Pages */}
+        <Route path="/facility-finder" element={<FacilityFinder />} />
+        <Route path="/specialities" element={<SpecialitiesNearby />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </Router>
   );
 };
 

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const Navbar = () => {
@@ -6,19 +7,19 @@ const Navbar = () => {
       <div className="flex items-center space-x-3">
         <img src={logo} alt="RAHA Logo" className="h-10 w-13 mt-1" />
         <div className="flex flex-col justify-center leading-tight">
-            <h1 className="text-2xl font-bold text-[#005086]">RAHA</h1>
-            <p className="text-sm text-[#10A245] -mt-0.5 tracking-wide">
+          <h1 className="text-2xl font-bold text-[#005086]">RAHA</h1>
+          <p className="text-sm text-[#10A245] -mt-0.5 tracking-wide">
             Rural Access to Healthcare Analyser
-            </p>
+          </p>
         </div>
       </div>
 
       <div className="flex gap-6 text-rahaBlue font-semibold">
-        <a href="#">Home</a>
-        <a href="#">Nearest Facility Finder</a>
-        <a href="#">Specialities Nearby</a>
-        <a href="#">Login</a>
-        <a href="#">Sign Up</a>
+        <Link to="/">Home</Link>
+        <Link to="/facility-finder">Nearest Facility Finder</Link>
+        <Link to="/specialities">Hospitals Nearby</Link>
+        <Link to="/login">Login</Link>
+        <Link to="/signup">Sign Up</Link>
       </div>
     </nav>
   );

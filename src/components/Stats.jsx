@@ -1,5 +1,5 @@
 import CountUp from "react-countup";
-import { FaHospital, FaUserMd, FaMapMarkerAlt } from "react-icons/fa";
+import { FaHospital, FaUserMd, FaMapMarkerAlt, FaHandsHelping } from "react-icons/fa"; // added new icon
 
 const Stats = () => {
   return (
@@ -23,6 +23,11 @@ const Stats = () => {
             icon: <FaMapMarkerAlt className="text-rahaBlue text-4xl mx-auto mb-4" />,
             end: 540,
             label: "Villages Covered",
+          },
+          {
+            icon: <FaHandsHelping className="text-rahaBlue text-4xl mx-auto mb-4" />,
+            end: 85,
+            label: "Camps Conducted",
           },
         ].map((item, i) => (
           <div
