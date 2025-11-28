@@ -5,8 +5,7 @@ import Stats from "./components/Stats";
 import Footer from "./components/Footer";
 import Carousel from "./components/Carousel";
 import FacilityFinder from "./pages/NearestFacilityFinder";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+
 
 const App = () => {
   return (
@@ -28,8 +27,7 @@ const App = () => {
 
         {/* Other Pages */}
         <Route path="/facility-finder" element={<FacilityFinder />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        
       </Routes>
     </Router>
   );
