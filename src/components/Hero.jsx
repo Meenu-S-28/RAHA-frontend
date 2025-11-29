@@ -1,6 +1,9 @@
 import villagers from "../assets/Villagers.png";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate(); 
+  
   return (
     <section
       className="relative bg-cover bg-center h-[85vh] flex flex-col justify-center items-center text-center px-6"
@@ -16,7 +19,9 @@ const Hero = () => {
           RAHA helps analyze the distance and accessibility between villages and
           hospitals — enabling smarter planning for better health coverage.
         </p>
-        <button className="bg-rahaGreen px-8 py-3 rounded-lg font-semibold text-white hover:bg-green-600 transition">
+        <button 
+        onClick={() => navigate("/explore")} 
+        className="bg-rahaGreen px-8 py-3 rounded-lg font-semibold text-white hover:bg-green-600 transition" >
           Explore RAHA
         </button>
       </div>

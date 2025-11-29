@@ -19,7 +19,7 @@ const Navbar = () => {
         <Link to="/facility-finder">Nearest Facility Finder</Link>
         <Link to="/explore">Explore</Link>
         <Link to="/add-hospital">Add Hospital</Link>
-          {/* <Link to="/camp-recom">Camp Recommendation</Link>*/}
+        <Link to="/camp-recommendations">Camp Recommendation</Link>
       </div>
     </nav>
   );

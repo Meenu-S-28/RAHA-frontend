@@ -9,6 +9,7 @@ import Explore from "./pages/Explore";
 import ExploreHospitals from "./pages/ExploreHospitals";
 import ExploreVillages from "./pages/ExploreVillages";
 import AddHospital from "./pages/AddHospital";
+import CampRecommendationPage from "./pages/CampRecommendationPage.jsx";
 
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/explore/hospitals" element={<ExploreHospitals />} />
         <Route path="/explore/villages" element={<ExploreVillages />} />
         <Route path="/add-hospital" element={<AddHospital  />} />
+        <Route path="/camp-recommendations" element={<CampRecommendationPage />} />
 
         
       </Routes>
