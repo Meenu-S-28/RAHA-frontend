@@ -4,6 +4,9 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 /* ---------------------------
    Icons
    --------------------------- */
@@ -104,7 +107,7 @@ export default function NearestFacilityFinder() {
   useEffect(() => {
     async function load() {
       try {
-        const res = await axios.get("http://localhost:5000/api/hospitals");
+        const res = await axios.get(`${API_URL}/hospitals`);
         const normalized = res.data.map(h => ({
           ...h,
           _lng: Number(h.location.coordinates[0]),

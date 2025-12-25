@@ -4,6 +4,8 @@ import axios from "axios";
 import CampMapView from "../components/CampMapView";
 import CampTableView from "../components/CampTableView";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function CampRecommendationPage() {
   const [camps, setCamps] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +17,7 @@ export default function CampRecommendationPage() {
   async function loadCamps() {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:5000/api/camps");
+      const res = await axios.get(`${API_URL}/camps`);
       // expected shape: camp.targetVillageId populated (name, district, population, location)
       setCamps(res.data || []);
     } catch (err) {

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 const stateDistrictMap = {
   "All States": [],
@@ -55,11 +57,13 @@ export default function ExploreVillages() {
     stateDistrictMap[stateFilter] || ["All Districts"];
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/villages")
-      .then((res) => setVillages(res.data))
-      .catch((err) => console.error(err))
-      .finally(() => setLoading(false));
-  }, []);
+  axios
+    .get(`${API_URL}/villages`)
+    .then((res) => setVillages(res.data))
+    .catch((err) => console.error(err))
+    .finally(() => setLoading(false));
+}, []);
+
 
   const filtered = villages.filter((v) => {
     if (search && !v.name.toLowerCase().includes(search.toLowerCase()))

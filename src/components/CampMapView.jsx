@@ -5,6 +5,8 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 // simple icon for camp marker
 const campIcon = new L.Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/512/2972/2972185.png",
@@ -95,7 +97,7 @@ const CampMapView = forwardRef(function CampMapView({ camps = [], loading, focus
   // update status helper (PUT)
   async function updateStatus(campId, newStatus) {
     try {
-      await axios.put(`http://localhost:5000/api/camps/${campId}`, { status: newStatus });
+      await axios.put(`${API_URL}/camps/${campId}`, { status: newStatus });
       if (onUpdate) onUpdate();
     } catch (err) {
       console.error("Failed to update camp status", err);

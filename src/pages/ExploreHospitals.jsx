@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 /* -----------------------------------------------
    STATE–DISTRICT MAP
 ------------------------------------------------ */
@@ -72,12 +74,13 @@ export default function ExploreHospitals() {
      FETCH HOSPITALS
   ------------------------------------------------ */
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/hospitals")
-      .then((res) => setHospitals(res.data))
-      .catch((err) => console.error(err))
-      .finally(() => setLoading(false));
-  }, []);
+  axios
+    .get(`${API_URL}/hospitals`)
+    .then((res) => setHospitals(res.data))
+    .catch((err) => console.error(err))
+    .finally(() => setLoading(false));
+}, []);
+
 
   /* -----------------------------------------------
      FILTER PIPELINE
