@@ -1,25 +1,39 @@
 import { Link } from "react-router-dom";
-import logo from "../assets/Logo.png";
+import logo from "../assets/RAHALogo.png";
 
 const Navbar = () => {
   return (
-    <nav className="bg-white shadow-md px-8 py-4 flex justify-between items-center sticky top-0 z-50">
-      <div className="flex items-center space-x-3">
-        <img src={logo} alt="RAHA Logo" className="h-15 w-16 mt-1" />
-        <div className="flex flex-col justify-center leading-tight">
-          {/* <h1 className="text-2xl font-bold text-[#005086]">RAHA</h1>
-          <p className="text-sm text-[#10A245] -mt-0.5 tracking-wide">
-            Rural Access to Healthcare Analyser
-          </p> */}
-        </div>
+    <nav className="bg-white shadow-md px-6 md:px-10 py-4 flex justify-between items-center sticky top-0 z-50">
+      
+      {/* LOGO */}
+      <div className="flex items-center">
+        <img
+          src={logo}
+          alt="RAHA Logo"
+          className="
+            h-12 w-auto
+            md:h-18
+            lg:h-18
+            object-contain
+          "
+        />
       </div>
 
-      <div className="flex gap-6 text-rahaBlue font-semibold">
-        <Link to="/">Home</Link>
-        <Link to="/facility-finder">Nearest Facility Finder</Link>
-        <Link to="/explore">Explore</Link>
-        <Link to="/add-hospital">Add Hospital</Link>
-        <Link to="/camp-recommendations">Camp Recommendation</Link>
+      {/* NAV LINKS */}
+      <div className="hidden md:flex gap-6 text-rahaBlue font-semibold">
+        <Link to="/" className="hover:text-[#10A245] transition">Home</Link>
+        <Link to="/facility-finder" className="hover:text-[#10A245] transition">
+          Nearest Facility Finder
+        </Link>
+        <Link to="/explore" className="hover:text-[#10A245] transition">
+          Explore
+        </Link>
+        <Link to="/add-hospital" className="hover:text-[#10A245] transition">
+          Add Hospital
+        </Link>
+        <Link to="/camp-recommendations" className="hover:text-[#10A245] transition">
+          Camp Recommendation
+        </Link>
       </div>
     </nav>
   );

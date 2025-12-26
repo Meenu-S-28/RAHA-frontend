@@ -25,7 +25,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 /* ---------- ICONS ---------- */
 const campIcon = new L.Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
-  iconSize: [30, 30],
+  iconSize: [24, 24],
 });
 
 const villageIcon = new L.Icon({
