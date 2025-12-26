@@ -132,7 +132,7 @@ export default function NearestFacilityFinder() {
     if (service) params.service = service;
     const res = await axios.get(`${API_URL}/hospitals/nearest`, { params });
 
-    const data = res.data.data||[];
+    const data = res.data.data;
     setHospitals(data);
     setConnections(
       data.map((h) => [
@@ -155,15 +155,6 @@ export default function NearestFacilityFinder() {
     setSelectedFacilities([]);
     setHospitals([]);
     setConnections([]);
-
-    if (locationMode === "current") {
-    navigator.geolocation.getCurrentPosition((pos) => {
-      loadNearestHospitals({
-        lat: pos.coords.latitude,
-        lng: pos.coords.longitude,
-      });
-    });
-  }
   }
 
   /* ---------------- RENDER ---------------- */
@@ -251,21 +242,11 @@ export default function NearestFacilityFinder() {
 
         {/* ACTIONS */}
         <div className="flex gap-3 mt-4">
-          {/* <button
+          <button
             onClick={applyFilters}
             className="flex-1 bg-[#005086] text-white py-2 rounded"
           >
             Apply
-          </button> */}
-          <button
-          disabled={locationMode === "village" && !selectedVillageId}
-          className={`flex-1 py-2 rounded ${
-          locationMode === "village" && !selectedVillageId
-          ? "bg-gray-300 cursor-not-allowed"
-          : "bg-[#005086] text-white"
-          }`}
-          >
-          Apply
           </button>
           <button
             onClick={clearFilters}
@@ -275,27 +256,6 @@ export default function NearestFacilityFinder() {
           </button>
         </div>
       </aside>
-      {/* -------- LEGEND -------- */}
-      <div className="mt-6 border-t pt-4">
-      <h4 className="text-sm font-semibold text-gray-700 mb-2">
-      Hospital Distance Legend
-      </h4>
-
-      <div className="flex items-center gap-2 text-sm mb-1">
-      <span>🟢</span>
-      <span>Nearest Hospital</span>
-      </div>
-
-      <div className="flex items-center gap-2 text-sm mb-1">
-      <span>🟡</span>
-      <span>2nd Nearest Hospital</span>
-      </div>
-
-      <div className="flex items-center gap-2 text-sm">
-      <span>🔴</span>
-      <span>3rd Nearest Hospital</span>
-      </div>
-      </div>
 
       {/* -------- MAP -------- */}
       <main className="flex-1">
@@ -312,7 +272,7 @@ export default function NearestFacilityFinder() {
           {hospitals.map((h, i) => (
             <Marker
               key={i}
-              icon={hospitalIcons[i]|| hospitalIcons[2]}
+              icon={hospitalIcons[i]}
               position={[
                 h.coordinates?.[1] ?? h.location.coordinates[1],
                 h.coordinates?.[0] ?? h.location.coordinates[0],
