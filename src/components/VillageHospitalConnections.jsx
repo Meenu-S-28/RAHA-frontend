@@ -1,75 +1,60 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
+import { Marker, Popup, Polyline } from "react-leaflet";
 import L from "leaflet";
-
-const API_URL = import.meta.env.VITE_API_URL;
 
 const villageIcon = new L.Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
-  iconSize: [28, 28],
+  iconSize: [26, 26],
 });
 
 const hospitalIcon = new L.Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/512/854/854878.png",
-  iconSize: [30, 30],
+  iconSize: [28, 28],
 });
 
-export default function VillageHospitalConnections() {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get(`${API_URL}/villages/connections`)
-      .then(res => setData(res.data))
-      .catch(err => console.error(err));
-  }, []);
-
+export default function VillageHospitalConnections({ data = [] }) {
   return (
-    <MapContainer
-      center={[11.0168, 76.9558]}
-      zoom={7}
-      style={{ height: "85vh", width: "100%" }}
-    >
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+    <>
+      {data.map((item, idx) => {
+        const vLng = item.village.coordinates[0];
+        const vLat = item.village.coordinates[1];
 
-      {data.map((item, idx) => (
-        <div key={idx}>
-          {/* Village Marker */}
-          <Marker position={item.village.coordinates} icon={villageIcon}>
-            <Popup>
-              <strong>{item.village.name}</strong><br />
-              Access Score: {item.village.accessScore?.toFixed(2)}
-            </Popup>
-          </Marker>
+        return (
+          <div key={idx}>
+            <Marker position={[vLat, vLng]} icon={villageIcon}>
+              <Popup>
+                <strong>{item.village.name}</strong>
+                <div>Access Score: {item.village.accessScore?.toFixed(2)}</div>
+              </Popup>
+            </Marker>
 
-          {/* Hospitals + Lines */}
-          {item.hospitals.map((h, i) => (
-            <div key={i}>
-              <Marker position={h.coordinates} icon={hospitalIcon}>
-                <Popup>
-                  <strong>{h.name}</strong><br />
-                  Distance: {h.distanceKm?.toFixed(1)} km
-                </Popup>
-              </Marker>
+            {item.hospitals.map((h, i) => {
+              const hLng = h.coordinates[0];
+              const hLat = h.coordinates[1];
 
-              <Polyline
-                positions={[
-                  item.village.coordinates,
-                  h.coordinates
-                ]}
-                color={
-                  i === 0 ? "green" :
-                  i === 1 ? "orange" :
-                  "red"
-                }
-                weight={2}
-                opacity={0.7}
-              />
-            </div>
-          ))}
-        </div>
-      ))}
-    </MapContainer>
+              return (
+                <div key={i}>
+                  <Marker position={[hLat, hLng]} icon={hospitalIcon}>
+                    <Popup>
+                      <strong>{h.name}</strong>
+                      <div>{h.distanceKm?.toFixed(1)} km</div>
+                    </Popup>
+                  </Marker>
+
+                  <Polyline
+                    positions={[
+                      [vLat, vLng],
+                      [hLat, hLng],
+                    ]}
+                    color={i === 0 ? "green" : i === 1 ? "orange" : "red"}
+                    weight={2}
+                    opacity={0.7}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        );
+      })}
+    </>
   );
 }
